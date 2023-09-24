@@ -89,9 +89,9 @@ def is_subcollection(a_coll, b_coll):
         flag = True
 
     if flag:
-        return f"Множина {a_coll} є підмножиною {b_coll}"
+        return f"Множина {set(a_coll)} є підмножиною {set(b_coll)}"
     else:
-        return f"Множина {a_coll} не є підмножиною {b_coll}"
+        return f"Множина {set(a_coll)} не є підмножиною {set(b_coll)}"
 
 
 # чи є рівними множини
@@ -108,9 +108,9 @@ def are_collections_equal(a_coll, b_coll):
         flag = True
 
     if flag:
-        return f"{a_coll} = {b_coll}"
+        return f"{set(a_coll)} = {set(b_coll)}"
     else:
-        return f"{a_coll} != {b_coll}"
+        return f"{set(a_coll)} != {set(b_coll)}"
 
 
 # в байти
@@ -166,8 +166,8 @@ def transform_bytes_to_normal_collection(u_coll, a_coll, b_coll, operation, coll
     coll = a_coll if collection.lower() == 'a' else b_coll
     if operation == 'not':
         if debug:
-            print(f"U: {u_coll}")
-            print(f"{collection.upper()}: {coll}")
+            print(f"U: {set(u_coll)}")
+            print(f"{collection.upper()}: {set(coll)}")
             print('-----------------')
             print(f"{collection.upper()}: {collection_into_bytes(u_coll, coll)}")
             print(f"NOT {collection.upper()}: {collection_into_bytes(u_coll, elems_in_u_not_in_a(u_coll, coll))}")
@@ -178,14 +178,14 @@ def transform_bytes_to_normal_collection(u_coll, a_coll, b_coll, operation, coll
                 total_a_collection.append(u_coll[i])
     else:
         if debug:
-            print('A: ', a_coll)
-            print('B: ', b_coll)
+            print('A: ', set(a_coll))
+            print('B: ', set(b_coll))
         result_bytes = operations_with_bytes(u_coll, a_coll, b_coll, operation)
         for i in range(len(result_bytes)):
             if result_bytes[i] == '1':
                 total_a_collection.append(u_coll[i])
 
-    return total_a_collection
+    return set(total_a_collection)
 
 
 def print_and_compare_collections(u_coll, a_coll, b_coll, operation):
